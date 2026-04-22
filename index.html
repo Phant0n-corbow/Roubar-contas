@@ -2,21 +2,24 @@
 <html lang="pt-br">
 <body>
 
-    <a href="#" onclick="enviarWebhook(event)">Clique aqui para enviar a mensagem</a>
+    <a href="#" onclick="enviarRegras(event)">Clique aqui para enviar as regras</a>
 
     <script>
-        function enviarWebhook(event) {
-            event.preventDefault(); // Impede o link de recarregar a página
+        function enviarRegras(event) {
+            event.preventDefault();
             
+            // Sua URL inserida abaixo:
             const url = "https://discord.com/api/webhooks/1495993264635904051/8MyNvYn9qsFMh44kkgHg11nf7v7BoACoim1eKPBvdbeeVQn7wmVN355wyqv1c94-uyTO";
             
+            const mensagem = `# respeito\n\nTenha respeito com todos. Sendo membro antigo ou novo queremos criar um ambiente agradável para todos (ou não...)\n\n# Sem pornografia\n\nPornografia e extremamente proibida nos canais normais. Isso seria constrangedor para novos membros\n\n# Respeito à Hierarquia: As decisões da administração são soberanas. Questionamentos devem ser feitos de forma privada e respeitosa. O descumprimento de orientações de superiores resultará em advertência.\nTabela de Preços e\n\n# Integridade: É terminantemente proibido vender produtos ou serviços abaixo do preço estipulado pela administração. A desvalorização do mercado prejudica a todos.\n\n# Exclusividade do Painel: Não é permitida a troca, compartilhamento ou revenda de acesso ao painel para terceiros sem autorização prévia.\nConduta Profissional: Mantenha o respeito com os demais membros. Comportamentos tóxicos, ofensas ou discussões desnecessárias nos canais oficiais não serão tolerados.\n\n# Sigilo e Segurança: Informações internas, métodos e atualizações do grupo devem ser mantidos em sigilo. O vazamento de dados estratégicos causará banimento imediato.\n\n# Suporte e Organização: Utilize os canais corretos para dúvidas ou problemas técnicos. Evite marcar a administração para assuntos que podem ser resolvidos via FAQ ou suporte padrão\n\nLembrando! conhecimento não é crime, crime é o que você vai fazer com ele\n@everyone`;
+
             fetch(url, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ content: 'kajavwh' })
+                body: JSON.stringify({ content: mensagem })
             })
-            .then(() => alert('Mensagem enviada!'))
-            .catch(err => console.error('Erro ao enviar:', err));
+            .then(() => alert('Regras enviadas para o Discord!'))
+            .catch(err => alert('Erro ao enviar. Verifique o console.'));
         }
     </script>
 
